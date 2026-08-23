@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthBridge Kerala — Digital Health Passport for Migrant Workers</title>
+  <meta name="description" content="A portable digital health passport designed to provide continuous healthcare access and consent-driven medical records for migrant workers in Kerala. Aligned with UN SDGs.">
+  
+  <!-- Core Design System CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/animations.css">
+</head>
+<body>
+
+  <!-- 1. Government / Hackathon Banner -->
+  <div class="gov-top-bar">
+    <div class="gov-badge">
+      <span>🏛️</span>
+      <span>Government of Kerala • National Health Mission (NHM) Prototype</span>
+    </div>
+    <div class="gov-disclaimer">
+      <span>Demo System • Aligned with UN SDGs 3, 10, 9 & 16 • Fictional Medical Data</span>
+    </div>
+  </div>
+
+  <!-- 2. Main Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-logo" onclick="navigateTo('landing')" title="Go to Home">
+        <div class="brand-icon-wrapper">
+          <span>🩺</span>
+        </div>
+        <div class="brand-text">
+          <h1 data-i18n="app_title">HealthBridge Kerala</h1>
+          <p data-i18n="app_subtitle">Digital Health Passport for Migrant Workers</p>
+        </div>
+      </div>
+
+      <!-- Quick Role & Navigation Switcher -->
+      <div class="header-actions">
+        <div class="role-quick-nav">
+          <button class="role-tab-btn active" data-role="landing" onclick="navigateTo('landing')">🏠 Home</button>
+          <button class="role-tab-btn" data-role="register" onclick="navigateTo('register')" style="color:var(--primary-700); font-weight:700;">📝 Register Worker</button>
+          <button class="role-tab-btn" data-role="worker" onclick="navigateTo('worker', 'KL-MW-10234')">👷 Worker</button>
+          <button class="role-tab-btn" data-role="doctor" onclick="navigateTo('doctor')">🩺 Doctor</button>
+          <button class="role-tab-btn" data-role="admin" onclick="navigateTo('admin')">🏛️ Admin</button>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="lang-selector-wrapper">
+          <select class="lang-select" onchange="setLanguage(this.value)" aria-label="Select Language">
+            <option value="en">🇬🇧 English</option>
+            <option value="ml">🌴 മലയാളം</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="bn">🌾 বাংলা</option>
+          </select>
+        </div>
+
+        <!-- Emergency Mode Button -->
+        <button class="btn-emergency-top beacon-pulse" onclick="navigateTo('emergency', 'KL-MW-10234')">
+          <span>🚨</span>
+          <span data-i18n="btn_emergency_access">Emergency Mode</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" id="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Views Container -->
+  <main>
+
+    <!-- =======================================================================
+         VIEW 1: LANDING PAGE
+         ======================================================================= -->
+    <div id="view-landing" class="view-section active">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div class="hero-kerala-tag">
+              <span>🌴</span>
+              <span>Kerala State Migrant Health Initiative</span>
+            </div>
+
+            <h2 class="hero-title" data-i18n="hero_title">
+              Your Health. Your Identity. <br><span class="highlight">Wherever You Go.</span>
+            </h2>
+
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
+              A portable digital health passport designed to provide continuous healthcare access for migrant workers in Kerala. No lost prescriptions. No data silos.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg" onclick="navigateTo('register')" data-i18n="btn_register_worker" style="font-weight:700; box-shadow:0 4px 14px rgba(15,118,110,0.35);">
+                📝 Register Worker ➔
+              </button>
+              <button class="btn btn-secondary btn-lg" onclick="navigateTo('role-select')" data-i18n="btn_get_started">
+                Explore Portals
+              </button>
+              <button class="btn btn-secondary btn-lg" onclick="document.getElementById('features-section').scrollIntoView({behavior: 'smooth'})" data-i18n="btn_explore_features">
+                Features
+              </button>
+            </div>
+
+            <!-- Prominent Quick Register Callout Banner -->
+            <div style="margin-top:1.25rem; padding:0.875rem 1.25rem; background:rgba(15,118,110,0.08); border:1.5px dashed var(--primary-400); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:1.6rem;">👷‍♂️</span>
+                <div>
+                  <strong style="color:var(--primary-900); font-size:0.9375rem;">New Migrant Worker in Kerala?</strong>
+                  <p style="margin:0; font-size:0.8125rem; color:var(--slate-600);">Generate your portable Digital Health Passport in 2 minutes.</p>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="navigateTo('register')">
+                Register New Worker ➔
+              </button>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <h3>1,248+</h3>
+                <p>Migrant Workers Registered</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>14</h3>
+                <p>Districts Covered in Kerala</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>100%</h3>
+                <p>Consent-Driven Privacy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conceptual Digital Health Card Hero Visual -->
+          <div class="hero-card-preview">
+            <div class="health-passport-card card-hover-lift">
+              <div class="card-header-bar">
+                <div class="card-gov-label">
+                  <span>Kerala Health Mission</span>
+                  <span>Health Passport</span>
+                </div>
+                <div class="card-user-info">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Worker Avatar" class="card-avatar">
+                  <div>
+                    <div class="card-user-name">Rahul Kumar</div>
+                    <div class="card-user-id">ID: KL-MW-10234</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="card-meta-grid">
+                  <div class="card-meta-item">
+                    <div class="meta-label">Blood Group</div>
+                    <div class="meta-val" style="color:var(--emergency-red);">B+ (Positive)</div>
+                  </div>
+                  <div class="card-meta-item">
+                    <div class="meta-label">Language</div>
+                    <div class="meta-val">Hindi / हिंदी</div>
+                  </div>
+                  <div class="card-meta-item">
+                    <div class="meta-label">Origin State</div>
+                    <div class="meta-val">Bihar ➔ Ernakulam</div>
+                  </div>
+                  <div class="card-meta-item">
+                    <div class="meta-label">Status</div>
+                    <div class="meta-val" style="color:var(--primary-600);">Active Verified</div>
+                  </div>
+                </div>
+
+                <div class="card-qr-box">
+                  <div id="hero-qr-box"></div>
+                  <p>Scan for Verified Verification Token</p>
+                </div>
+              </div>
+
+              <div class="card-footer-strip">
+                <span>🛡️ 256-bit Encrypted Token</span>
+                <span>SDG Aligned</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Why This Matters Section -->
+      <section class="section-padding">
+        <div class="section-header">
+          <div class="section-eyebrow">Why This Matters</div>
+          <h3 class="section-title">The Healthcare Challenge for Mobile Workers</h3>
+          <p class="section-subtitle">
+            Migrant workers frequently move between construction sites, plywood factories, and districts. Their healthcare history gets lost along the way.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-icon-wrap">📑</div>
+            <h3 data-i18n="problem_1_title">Fragmented Medical Records</h3>
+            <p data-i18n="problem_1_desc">
+              Workers switch employers and districts frequently. Paper prescriptions get lost, leading to repeated tests and misdiagnoses.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-icon-wrap">🗣️</div>
+            <h3 data-i18n="problem_2_title">Language & Accessibility Barriers</h3>
+            <p data-i18n="problem_2_desc">
+              Most interstate workers speak Hindi, Bengali, or Odia, making communication in local clinics difficult during critical consultations.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-icon-wrap">⏳</div>
+            <h3 data-i18n="problem_3_title">Lack of Continuity of Care</h3>
+            <p data-i18n="problem_3_desc">
+              Chronic conditions like asthma, hypertension, and diabetes go unmanaged when medical records remain trapped in one hospital.
+            </p>
+          </div>
+        </div>
+
+        <!-- Our Solution Banner -->
+        <div class="solution-banner">
+          <div class="solution-content">
+            <h3>Our Solution: HealthBridge Kerala</h3>
+            <p>
+              "Healthcare records should travel with the worker, not remain trapped in one hospital." A secure, mobile-friendly digital health passport that gives workers ownership of their health data.
+            </p>
+          </div>
+          <div class="solution-features">
+            <div class="solution-feature-item">✓ Portable QR-Based Health Identity</div>
+            <div class="solution-feature-item">✓ Granular 24-Hour Patient Consent</div>
+            <div class="solution-feature-item">✓ Instant Life-Saving Emergency Profile</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 Core Features Section -->
+      <section id="features-section" class="section-padding" style="background: #FFFFFF;">
+        <div class="section-header">
+          <div class="section-eyebrow">Platform Capabilities</div>
+          <h3 class="section-title">Comprehensive Healthcare Features</h3>
+          <p class="section-subtitle">Engineered specifically for low-friction, high-trust healthcare delivery in Kerala.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🪪</div>
+            <h4>1. Digital Health ID</h4>
+            <p>Unique standardized identifier (e.g. KL-MW-10234) linked to worker identity across all 14 districts.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📲</div>
+            <h4>2. QR Health Passport</h4>
+            <p>Offline-friendly QR code containing secure verification tokens with zero unencrypted medical data.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⏱️</div>
+            <h4>3. Medical Timeline</h4>
+            <p>Chronological, expandable health history spanning hospital visits, prescriptions, and treatments.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h4>4. Multilingual Interface</h4>
+            <p>Full native translation in English, Malayalam (മലയാളം), Hindi (हिन्दी), and Bengali (বাংলা).</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h4>5. Consent Management</h4>
+            <p>Workers grant explicit 24-hour time-bound access to doctors with one-tap revocation capability.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🚨</div>
+            <h4>6. Emergency Mode</h4>
+            <p>High-contrast life-saving profile showing only blood group, severe allergies, inhaler meds, and emergency contacts.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🏕️</div>
+            <h4>7. Health Camp Records</h4>
+            <p>Direct synchronization of community health screenings (BP, Blood Sugar, BMI, Vision) to worker history.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h4>8. AI Medical Summary</h4>
+            <p>Automated clinical risk assistant generating concise history summaries and drug allergy warnings for clinicians.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🏥</div>
+            <h4>9. Nearby Healthcare Facilities</h4>
+            <p>Directory of Primary Health Centres (PHCs), Taluk Hospitals, and Community Health Centres in Kerala.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h4>10. Follow-up Reminders</h4>
+            <p>Automated alerts for wound dressing changes, vaccination boosters, and chronic medication refills.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SDG Section -->
+      <section class="section-padding sdg-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Sustainable Development Goals</div>
+          <h3 class="section-title" data-i18n="sdg_section_title">Aligned with UN Sustainable Development Goals</h3>
+          <p class="section-subtitle">Bridging healthcare inequalities for internal migrants through digital innovation.</p>
+        </div>
+
+        <div class="sdg-grid">
+          <!-- SDG 3 -->
+          <div class="sdg-card">
+            <div class="sdg-card-header sdg-3-header">
+              <div class="sdg-num">3</div>
+              <div class="sdg-name">Good Health & Well-being</div>
+            </div>
+            <div class="sdg-card-body">
+              <h4 data-i18n="sdg_3_title">Good Health and Well-being</h4>
+              <p data-i18n="sdg_3_desc">Improves continuity of healthcare, vaccination tracking, and immediate access to vital medical histories across districts.</p>
+              <div class="sdg-impact-pill">Target 3.8: Universal Health Coverage</div>
+            </div>
+          </div>
+
+          <!-- SDG 10 -->
+          <div class="sdg-card">
+            <div class="sdg-card-header sdg-10-header">
+              <div class="sdg-num">10</div>
+              <div class="sdg-name">Reduced Inequalities</div>
+            </div>
+            <div class="sdg-card-body">
+              <h4 data-i18n="sdg_10_title">Reduced Inequalities</h4>
+              <p data-i18n="sdg_10_desc">Bridges language barriers, empowers vulnerable mobile populations, and ensures universal health protection for guest workers.</p>
+              <div class="sdg-impact-pill">Target 10.7: Safe & Orderly Migration</div>
+            </div>
+          </div>
+
+          <!-- SDG 9 -->
+          <div class="sdg-card">
+            <div class="sdg-card-header sdg-9-header">
+              <div class="sdg-num">9</div>
+              <div class="sdg-name">Industry & Innovation</div>
+            </div>
+            <div class="sdg-card-body">
+              <h4 data-i18n="sdg_9_title">Industry, Innovation & Infrastructure</h4>
+              <p data-i18n="sdg_9_desc">Leverages lightweight digital identity, QR verification, and privacy-preserving consent architecture.</p>
+              <div class="sdg-impact-pill">Target 9.c: Universal Digital Access</div>
+            </div>
+          </div>
+
+          <!-- SDG 16 -->
+          <div class="sdg-card">
+            <div class="sdg-card-header sdg-16-header">
+              <div class="sdg-num">16</div>
+              <div class="sdg-name">Peace, Justice & Institutions</div>
+            </div>
+            <div class="sdg-card-body">
+              <h4 data-i18n="sdg_16_title">Peace, Justice & Strong Institutions</h4>
+              <p data-i18n="sdg_16_desc">Protects patient autonomy via fine-grained consent controls and a tamper-evident security audit log.</p>
+              <div class="sdg-impact-pill">Target 16.9: Legal Identity for All</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- =======================================================================
+         VIEW 2: ROLE SELECTION / CONTINUE AS
+         ======================================================================= -->
+    <div id="view-role-select" class="view-section">
+      <div class="page-container">
+        <div class="role-select-container">
+          <div class="section-eyebrow">Select Access Portal</div>
+          <h2 class="section-title" data-i18n="continue_as">Continue as</h2>
+          <p class="section-subtitle">Choose your portal to experience the interactive demonstration.</p>
+
+          <div class="role-cards-grid">
+            
+            <!-- Role 1: Migrant Worker -->
+            <div class="role-card worker" onclick="navigateTo('worker', 'KL-MW-10234')">
+              <div class="role-icon-large">👷</div>
+              <h3 data-i18n="role_worker">Migrant Worker</h3>
+              <p>View your Digital Health Passport, medical history timeline, QR code, and manage doctor consent.</p>
+              <button class="btn btn-primary" style="width:100%; margin-top:auto;">Enter Worker Portal</button>
+            </div>
+
+            <!-- Role 2: Doctor -->
+            <div class="role-card doctor" onclick="navigateTo('doctor')">
+              <div class="role-icon-large">🩺</div>
+              <h3 data-i18n="role_doctor">Doctor / Healthcare Provider</h3>
+              <p>Search worker by Health ID/QR, request consent, view clinical history, add diagnoses, and use AI summary.</p>
+              <button class="btn btn-primary" style="width:100%; margin-top:auto;">Enter Doctor Portal</button>
+            </div>
+
+            <!-- Role 3: Administrator -->
+            <div class="role-card admin" onclick="navigateTo('admin')">
+              <div class="role-icon-large">🏛️</div>
+              <h3 data-i18n="role_admin">Administrator</h3>
+              <p>Health Mission analytics, district health camps, demographic trends, and security audit logs.</p>
+              <button class="btn btn-primary" style="width:100%; margin-top:auto;">Enter Admin Portal</button>
+            </div>
+
+          </div>
+
+          <div style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--slate-200);">
+            <p style="font-size:0.9375rem; color:var(--slate-600); margin-bottom:1rem;">New to HealthBridge Kerala?</p>
+            <button class="btn btn-secondary" onclick="navigateTo('register')">
+              📝 Register New Migrant Worker
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 3: WORKER REGISTRATION
+         ======================================================================= -->
+    <div id="view-register" class="view-section">
+      <div class="page-container">
+        
+        <div id="registration-form-wrap" class="form-card">
+          <div class="form-header-bar">
+            <h2 data-i18n="nav_register">Register Migrant Worker</h2>
+            <p>Generate a portable Government-standard Digital Health ID (KL-MW-XXXXX) for healthcare access across Kerala.</p>
+          </div>
+
+          <form class="form-body" id="worker-registration-form" onsubmit="handleWorkerRegistration(event)">
+            
+            <!-- Section 1: Personal Details -->
+            <div>
+              <div class="form-section-title">
+                <span>👤</span>
+                <span>1. Personal Details</span>
+              </div>
+
+              <div class="form-grid-3" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Full Name <span class="required">*</span></label>
+                  <input type="text" name="name" class="form-control" placeholder="e.g. Rahul Kumar" required value="Rahul Kumar">
+                </div>
+                <div class="form-group">
+                  <label>Date of Birth <span class="required">*</span></label>
+                  <input type="date" id="reg-dob" name="dob" class="form-control" required value="1998-05-14" max="2012-12-31">
+                </div>
+                <div class="form-group">
+                  <label>Age (Years) <span class="required">*</span> <small style="color:var(--primary-600); font-weight:600;">(Auto-calculated)</small></label>
+                  <input type="number" id="reg-age" name="age" class="form-control" placeholder="Age" min="14" max="100" required value="28" readonly style="background:var(--slate-100); font-weight:700; color:var(--primary-700);">
+                </div>
+              </div>
+
+              <div class="form-grid-3" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Gender <span class="required">*</span></label>
+                  <select name="gender" class="form-control" required>
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number <span class="required">*</span></label>
+                  <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="10-digit mobile (e.g. 9876543210)" required value="9876543210" pattern="[0-9+ -]{10,15}">
+                </div>
+                <div class="form-group">
+                  <label>Email Address <small style="color:var(--slate-500);">(Optional)</small></label>
+                  <input type="email" name="email" class="form-control" placeholder="e.g. worker@example.com" value="rahul.kumar.demo@healthbridge.in">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:1rem;">
+                <label>Worker Photo / Avatar URL <small style="color:var(--slate-500);">(Optional)</small></label>
+                <input type="url" name="photo_url" class="form-control" placeholder="https://..." value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80">
+              </div>
+            </div>
+
+            <!-- Section 2: Identity & Domicile Details -->
+            <div>
+              <div class="form-section-title">
+                <span>🪪</span>
+                <span>2. Identity & Domicile Details</span>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Government ID Type <span class="required">*</span></label>
+                  <select name="govt_id_type" class="form-control" required>
+                    <option value="Aadhaar Card" selected>Aadhaar Card</option>
+                    <option value="Voter ID Card">Voter ID Card</option>
+                    <option value="Ration Card">Ration Card</option>
+                    <option value="Driving License">Driving License</option>
+                    <option value="Labour Welfare Card">Labour Welfare Card</option>
+                    <option value="Other Govt ID">Other Govt ID</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Government ID Number <span class="required">*</span></label>
+                  <input type="text" name="govt_id_number" class="form-control" placeholder="e.g. XXXX-XXXX-8921" required value="XXXX-XXXX-8921">
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>State of Origin <span class="required">*</span></label>
+                  <select name="origin_state" class="form-control" required>
+                    <option value="Bihar" selected>Bihar</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>District of Origin <span class="required">*</span></label>
+                  <input type="text" name="origin_district" class="form-control" placeholder="e.g. Patna, Murshidabad" required value="Patna">
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Current Address in Kerala <span class="required">*</span></label>
+                  <input type="text" name="current_address" class="form-control" placeholder="e.g. Room 14, Metro Worker Camp, Kaloor" required value="Room 14, Metro Worker Camp, Kaloor, Kochi">
+                </div>
+                <div class="form-group">
+                  <label>Current District in Kerala <span class="required">*</span></label>
+                  <select name="current_district" class="form-control" required>
+                    <option value="Ernakulam" selected>Ernakulam (Kochi)</option>
+                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                    <option value="Kozhikode">Kozhikode</option>
+                    <option value="Thrissur">Thrissur</option>
+                    <option value="Palakkad">Palakkad</option>
+                    <option value="Kollam">Kollam</option>
+                    <option value="Malappuram">Malappuram</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Kottayam">Kottayam</option>
+                    <option value="Alappuzha">Alappuzha</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Wayanad">Wayanad</option>
+                    <option value="Kasaragod">Kasaragod</option>
+                    <option value="Pathanamthitta">Pathanamthitta</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Work Details -->
+            <div>
+              <div class="form-section-title">
+                <span>🏗️</span>
+                <span>3. Work Details in Kerala</span>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Occupation / Trade <span class="required">*</span></label>
+                  <input type="text" name="occupation" class="form-control" placeholder="e.g. Construction Steel Fixer, Plywood Operator" required value="Construction Steel Fixer">
+                </div>
+                <div class="form-group">
+                  <label>Employer / Contractor / Firm Name <span class="required">*</span></label>
+                  <input type="text" name="employer_name" class="form-control" placeholder="e.g. L&T Metro Construction Kochi" required value="L&T Metro Construction Kochi">
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Workplace Location <span class="required">*</span></label>
+                  <input type="text" name="workplace_location" class="form-control" placeholder="e.g. Kaloor Metro Viaduct Site" required value="Kaloor Metro Viaduct Site">
+                </div>
+                <div class="form-group">
+                  <label>Date of Arrival in Kerala <span class="required">*</span></label>
+                  <input type="date" name="arrival_date" class="form-control" required value="2024-03-10">
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Health Details & Baseline -->
+            <div>
+              <div class="form-section-title">
+                <span>🩺</span>
+                <span>4. Health Details & Emergency Baseline</span>
+              </div>
+
+              <div class="form-grid-3" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Blood Group <span class="required">*</span></label>
+                  <select name="blood_group" class="form-control" required>
+                    <option value="B+" selected>B+ (Positive)</option>
+                    <option value="O+">O+ (Positive)</option>
+                    <option value="A+">A+ (Positive)</option>
+                    <option value="AB+">AB+ (Positive)</option>
+                    <option value="B-">B- (Negative)</option>
+                    <option value="O-">O- (Negative)</option>
+                    <option value="A-">A- (Negative)</option>
+                    <option value="AB-">AB- (Negative)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Known Allergies</label>
+                  <input type="text" name="allergies" class="form-control" placeholder="e.g. Penicillin, Sulfa, Dust" value="Penicillin">
+                </div>
+                <div class="form-group">
+                  <label>Existing Medical Conditions</label>
+                  <input type="text" name="conditions" class="form-control" placeholder="e.g. Asthma, Hypertension, Diabetes" value="Asthma (Mild intermittent)">
+                </div>
+              </div>
+
+              <div class="form-grid-2" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Current Regular Medications</label>
+                  <input type="text" name="medications" class="form-control" placeholder="e.g. Salbutamol Inhaler (100 mcg)" value="Salbutamol Inhaler (100 mcg as needed)">
+                </div>
+                <div class="form-group">
+                  <label>Vaccination Status</label>
+                  <select name="vaccination_status" class="form-control">
+                    <option value="Fully Vaccinated (COVID-19 2 Doses + Booster, Tetanus 2025)" selected>Fully Vaccinated (COVID-19 + Tetanus)</option>
+                    <option value="Partially Vaccinated">Partially Vaccinated</option>
+                    <option value="Booster Pending">Booster Pending</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-3" style="margin-top:1rem;">
+                <div class="form-group">
+                  <label>Emergency Contact Name <span class="required">*</span></label>
+                  <input type="text" name="emergency_name" class="form-control" placeholder="e.g. Priya Kumar" required value="Priya Kumar">
+                </div>
+                <div class="form-group">
+                  <label>Emergency Contact Phone <span class="required">*</span></label>
+                  <input type="tel" name="emergency_phone" class="form-control" placeholder="+91 XXXXX XXXXX" required value="+91 98765 00112">
+                </div>
+                <div class="form-group">
+                  <label>Relationship <span class="required">*</span></label>
+                  <select name="emergency_relation" class="form-control" required>
+                    <option value="Spouse" selected>Spouse</option>
+                    <option value="Parent">Parent</option>
+                    <option value="Sibling">Sibling</option>
+                    <option value="Child">Child</option>
+                    <option value="Employer / Contractor">Employer / Contractor</option>
+                    <option value="Roommate / Co-worker">Roommate / Co-worker</option>
+                    <option value="Friend">Friend</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5: Language -->
+            <div>
+              <div class="form-section-title">
+                <span>🗣️</span>
+                <span>5. Language Preference</span>
+              </div>
+              <div class="form-group" style="margin-top:1rem;">
+                <label>Preferred Communication Language <span class="required">*</span></label>
+                <select name="language" class="form-control" required>
+                  <option value="Hindi" selected>Hindi / हिन्दी</option>
+                  <option value="Bengali">Bengali / বাংলা</option>
+                  <option value="Malayalam">Malayalam / മലയാളം</option>
+                  <option value="Tamil">Tamil / தமிழ்</option>
+                  <option value="Odia">Odia / ଓଡ଼ିଆ</option>
+                  <option value="English">English</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section 6: Consent Agreement -->
+            <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-lg); padding:1.25rem;">
+              <div class="form-section-title" style="border-bottom:none; padding-bottom:0;">
+                <span>🔒</span>
+                <span>6. Patient Consent & Authorization</span>
+              </div>
+              <div style="margin-top:0.75rem; display:flex; align-items:flex-start; gap:12px;">
+                <input type="checkbox" id="reg-consent" name="consent_agreed" required checked style="width:20px; height:20px; margin-top:2px; accent-color:var(--primary-600); cursor:pointer;">
+                <label for="reg-consent" style="font-size:0.9375rem; color:var(--slate-800); font-weight:600; cursor:pointer; line-height:1.45;">
+                  "I consent to the storage and sharing of my health information for healthcare purposes."
+                </label>
+              </div>
+              <p style="font-size:0.75rem; color:var(--slate-500); margin-top:6px; margin-left:32px;">
+                Your health data is protected under Kerala Digital Health Guidelines. Access by doctors is time-bound (24h) and revocable.
+              </p>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" onclick="navigateTo('landing')" data-i18n="btn_cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-lg" data-i18n="btn_save_health_id">Save & Create Health ID ➔</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Registration Success Card -->
+        <div id="registration-success-wrap" class="form-card" style="display:none;">
+          <div class="success-card">
+            <div class="success-icon-badge">✓</div>
+            <h2>Registration Successful!</h2>
+            <p style="color:var(--slate-600); max-width:520px;">
+              Digital Health Passport has been created for <strong id="reg-success-name">Rahul Kumar</strong>.
+            </p>
+
+            <div style="background:var(--slate-50); border:1px solid var(--slate-200); padding:1.5rem; border-radius:var(--radius-lg); width:100%; max-width:400px; box-shadow:var(--shadow-sm);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:0.75rem; color:var(--slate-500); font-weight:700; text-transform:uppercase;">Digital Health ID</span>
+                <span style="font-size:0.75rem; color:var(--primary-700); font-weight:600;" id="reg-success-date">Registered: 17 Aug 2026</span>
+              </div>
+              <div id="reg-success-id" style="font-size:1.85rem; font-weight:900; color:var(--primary-700); font-family:monospace; margin:4px 0 12px;">KL-MW-10234</div>
+              
+              <div id="reg-success-qr" style="display:flex; justify-content:center; margin:1rem 0;"></div>
+              <p style="font-size:0.75rem; color:var(--slate-500);">Secure Offline Verification Token</p>
+            </div>
+
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem;">
+              <button class="btn btn-primary" id="btn-view-profile" onclick="navigateTo('worker', AppState.activeWorkerHealthId)">
+                👤 View Health Profile ➔
+              </button>
+              <button class="btn btn-secondary" id="btn-download-card" onclick="window.print()">
+                🖨️ Download Health Card
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 4: WORKER DASHBOARD
+         ======================================================================= -->
+    <div id="view-worker" class="view-section">
+      <div class="dashboard-shell">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar">
+          <div class="sidebar-user-badge">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Avatar" class="sidebar-avatar">
+            <div class="sidebar-user-details">
+              <h4 id="dash-worker-name">Rahul Kumar</h4>
+              <p id="dash-worker-id">KL-MW-10234</p>
+            </div>
+          </div>
+
+          <ul class="sidebar-nav-list">
+            <li>
+              <button class="sidebar-nav-btn worker-tab-btn active" data-tab="tab-timeline">
+                <span class="nav-icon">⏱️</span>
+                <span data-i18n="medical_records_label">Medical Records</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn worker-tab-btn" data-tab="tab-screenings">
+                <span class="nav-icon">🏕️</span>
+                <span data-i18n="lab_reports_label">Health Camp Vitals</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn worker-tab-btn" data-tab="tab-consents">
+                <span class="nav-icon">🔒</span>
+                <span data-i18n="consent_mgmt_label">Consent Requests</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn worker-tab-btn" data-tab="tab-ai-summary">
+                <span class="nav-icon">✨</span>
+                <span>AI Clinical Summary</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="navigateTo('register')" style="color:var(--primary-700); font-weight:700; background:rgba(15,118,110,0.08); margin-top:8px; border:1px solid var(--primary-200);">
+                <span class="nav-icon">➕</span>
+                <span>Register New Worker</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="sidebar-bottom-actions">
+            <button class="btn btn-secondary btn-sm" onclick="openModal('modal-qr-view')">
+              📱 View Large QR Code
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="window.print()">
+              🖨️ Print Health Card
+            </button>
+            <button class="btn btn-emergency btn-sm" onclick="navigateTo('emergency', AppState.activeWorkerHealthId)">
+              🚨 Emergency Profile
+            </button>
+          </div>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <div class="dashboard-main-area">
+          
+          <!-- Top Banner Card -->
+          <div class="dashboard-top-banner">
+            <div>
+              <h2>Welcome, <span id="dash-worker-name-banner">Rahul Kumar</span></h2>
+              <p id="dash-worker-meta">28 yrs • Male • Blood: B+ • From Bihar (In Ernakulam)</p>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <span id="dash-worker-lang-badge" class="badge badge-primary">🗣️ Preferred: Hindi</span>
+              <span class="badge badge-success">✓ Verified Active</span>
+              <button class="btn btn-secondary btn-sm" onclick="navigateTo('register')" style="font-weight:700; color:var(--primary-800); border-color:var(--primary-300);">
+                ➕ Register Worker
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick QR & Health ID Passport Card -->
+          <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:1.5rem;">
+            
+            <!-- Tab Panes Container -->
+            <div>
+              
+              <!-- Tab 1: Medical History Timeline -->
+              <div id="tab-timeline" class="worker-tab-pane">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                  <h3 style="font-size:1.25rem; font-weight:800; color:var(--slate-900);">Medical History Timeline</h3>
+                  <span class="badge badge-slate">Chronological Order</span>
+                </div>
+                <div id="worker-medical-timeline" class="timeline-container">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Tab 2: Health Camp Screenings -->
+              <div id="tab-screenings" class="worker-tab-pane" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                  <h3 style="font-size:1.25rem; font-weight:800; color:var(--slate-900);">Community Health Camp Records</h3>
+                </div>
+                <div id="worker-screenings-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Tab 3: Consent Requests -->
+              <div id="tab-consents" class="worker-tab-pane" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                  <h3 style="font-size:1.25rem; font-weight:800; color:var(--slate-900);">Active Doctor Access Requests</h3>
+                </div>
+                <div id="worker-consents-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Tab 4: AI Summary -->
+              <div id="tab-ai-summary" class="worker-tab-pane" style="display:none;">
+                <div id="worker-ai-summary-tab">
+                  <!-- Dynamically populated by AIMedicalSummary -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Digital Health Passport Widget -->
+            <div>
+              <div class="health-passport-card" style="margin:0 auto;">
+                <div class="card-header-bar">
+                  <div class="card-gov-label">
+                    <span>Government of Kerala</span>
+                    <span>Digital Passport</span>
+                  </div>
+                  <div class="card-user-info">
+                    <div>
+                      <div class="card-user-name" id="widget-worker-name">Rahul Kumar</div>
+                      <div class="card-user-id" id="widget-worker-id">KL-MW-10234</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <div class="card-qr-box">
+                    <div id="worker-dash-qr"></div>
+                    <p>Scan by Clinician to Request Record Access</p>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:8px;">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('modal-qr-view')">🔍 Enlarge QR Code</button>
+                    <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Download Health Card</button>
+                    <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText(AppState.activeWorkerHealthId); showToast('Health ID copied!', 'success');">📋 Copy Health ID</button>
+                  </div>
+                </div>
+
+                <div class="card-footer-strip">
+                  <span>🛡️ Token Verification</span>
+                  <span>Portable Care</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 5: DOCTOR DASHBOARD & CLINICIAN GATE
+         ======================================================================= -->
+    <div id="view-doctor" class="view-section">
+      <div class="dashboard-shell">
+        
+        <aside class="dashboard-sidebar">
+          <div class="sidebar-user-badge" style="cursor:pointer;" onclick="openDoctorProfileModal()" title="Click to view full Doctor Profile">
+            <span style="font-size:1.8rem;">🩺</span>
+            <div class="sidebar-user-details">
+              <h4 id="doc-profile-name">Dr. Anil Kumar</h4>
+              <p id="doc-profile-hospital">Govt Hospital, Kochi</p>
+              <div id="doc-profile-rating" style="margin-top:4px;">
+                <span class="rating-badge">⭐ 4.9 (18)</span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="sidebar-nav-list">
+            <li>
+              <button class="sidebar-nav-btn active">
+                <span class="nav-icon">🔍</span>
+                <span>Search Worker</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="openDoctorProfileModal()">
+                <span class="nav-icon">👨‍⚕️</span>
+                <span>My Profile & Reviews</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="openModal('modal-qr-scanner-sim')">
+                <span class="nav-icon">📷</span>
+                <span>Scan Worker QR</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="navigateTo('camps')">
+                <span class="nav-icon">🏕️</span>
+                <span>Health Camp Screenings</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="sidebar-bottom-actions">
+            <button class="btn btn-secondary btn-sm" onclick="openModal('modal-doctor-login')" style="color:var(--primary-700); font-weight:700; background:rgba(15,118,110,0.08); border-color:var(--primary-200);">
+              🔐 Switch Doctor Account
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="logoutDoctor()">
+              🚪 Switch Role / Logout
+            </button>
+          </div>
+        </aside>
+
+        <div class="dashboard-main-area">
+          
+          <!-- Doctor Stats Counter -->
+          <div class="stats-counter-grid">
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon teal">👥</div>
+              <div class="stat-counter-info">
+                <h3>18</h3>
+                <p>Workers Viewed Today</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon amber">⏳</div>
+              <div class="stat-counter-info">
+                <h3>3</h3>
+                <p>Pending Consents</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon blue">📝</div>
+              <div class="stat-counter-info">
+                <h3>14</h3>
+                <p>Records Added</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon rose">🚨</div>
+              <div class="stat-counter-info">
+                <h3>2</h3>
+                <p>Emergency Accesses</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor Worker Search Box -->
+          <div class="doctor-search-box">
+            <h3 style="font-size:1.25rem; font-weight:800; color:var(--slate-900);">Lookup Migrant Worker Health Record</h3>
+            <p style="font-size:0.875rem; color:var(--slate-600);">Enter Health ID (e.g. KL-MW-10234) or registered phone number</p>
+
+            <div class="search-input-group">
+              <input type="text" id="doctor-search-input" class="form-control" placeholder="e.g. KL-MW-10234 or +91 98765 43210" value="KL-MW-10234">
+              <button class="btn btn-primary" onclick="searchWorkerAsDoctor()">🔍 Search Patient</button>
+              <button class="btn btn-secondary" onclick="openModal('modal-qr-scanner-sim')">📷 Scan QR</button>
+            </div>
+          </div>
+
+          <!-- Worker Result Card -->
+          <div id="doctor-worker-result" style="display:none;">
+            
+            <div class="dashboard-top-banner" style="margin-bottom:1.5rem;">
+              <div>
+                <h3 style="font-size:1.35rem; font-weight:800;" id="doc-worker-name">Rahul Kumar</h3>
+                <p id="doc-worker-details">28y / Male • Blood: B+ • State: Bihar • Language: Hindi</p>
+              </div>
+              <div style="font-family:monospace; font-weight:800; font-size:1.1rem; color:var(--primary-700);" id="doc-worker-id">
+                KL-MW-10234
+              </div>
+            </div>
+
+            <!-- Gate: Worker Consent Required -->
+            <div id="doctor-consent-gate" class="consent-gate-card" style="display:none;">
+              <div class="consent-gate-icon">🔒</div>
+              <h3 style="font-size:1.35rem; font-weight:800; color:var(--slate-900);" data-i18n="consent_required">Worker Consent Required</h3>
+              <p style="color:var(--slate-600); max-width:480px;">
+                Medical records are protected by patient consent. As attending clinician, you must request 24-hour access before sensitive diagnoses and past treatments can be unlocked.
+              </p>
+              <div style="display:flex; gap:1rem;">
+                <button class="btn btn-primary" onclick="requestWorkerConsentFromDoctor()" data-i18n="btn_request_access">Request Access (24 Hours)</button>
+                <button class="btn btn-secondary" onclick="simulateWorkerApproval()">⚡ Simulate Worker 1-Click Approval (Demo)</button>
+              </div>
+              <div id="consent-sim-notice" style="display:none; font-size:0.8125rem; color:var(--primary-700); background:var(--primary-50); padding:6px 12px; border-radius:6px;">
+                Request sent! Click "Simulate Worker 1-Click Approval" to instantly unlock records.
+              </div>
+            </div>
+
+            <!-- Unlocked Clinical Records Area -->
+            <div id="doctor-records-unlocked">
+              
+              <!-- Action Bar -->
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                <h3 style="font-size:1.25rem; font-weight:800; color:var(--slate-900);">Clinical Records & Timeline</h3>
+                <button class="btn btn-primary" onclick="openModal('modal-add-record')" data-i18n="btn_add_medical_record">
+                  + Add Medical Record
+                </button>
+              </div>
+
+              <!-- AI Clinician Summary Area -->
+              <div id="doc-ai-summary-container" style="margin-bottom:2rem;">
+                <!-- Generated by AIMedicalSummary -->
+              </div>
+
+              <!-- Timeline of Records -->
+              <div id="doctor-medical-timeline" class="timeline-container">
+                <!-- Reuses timeline items -->
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 6: EMERGENCY HEALTH PROFILE (High Visibility)
+         ======================================================================= -->
+    <div id="view-emergency" class="view-section">
+      <div class="page-container">
+        
+        <div class="emergency-view-wrapper">
+          
+          <div class="emergency-header-alert beacon-pulse">
+            <div>
+              <div style="font-size:0.75rem; text-transform:uppercase; font-weight:800; letter-spacing:0.05em; opacity:0.9;">First Responder / Triage Mode</div>
+              <h2 data-i18n="emergency_title">EMERGENCY HEALTH PROFILE</h2>
+            </div>
+            <div style="font-size:2rem;">🚨</div>
+          </div>
+
+          <div class="emergency-body-card">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--slate-200); padding-bottom:1rem;">
+              <div>
+                <h3 style="font-size:1.5rem; font-weight:900; color:var(--slate-900);" id="emg-name">Rahul Kumar</h3>
+                <p style="font-family:monospace; font-weight:700; color:var(--slate-500);" id="emg-id">ID: KL-MW-10234</p>
+              </div>
+              <div id="emg-qr"></div>
+            </div>
+
+            <!-- Critical Safety Grid (ONLY Life-saving data) -->
+            <div class="emergency-grid-critical">
+              <div class="critical-box blood">
+                <div class="box-label" data-i18n="blood_group_label">Blood Group</div>
+                <div class="box-value" id="emg-blood" style="color:var(--emergency-red);">B+</div>
+              </div>
+
+              <div class="critical-box allergy">
+                <div class="box-label" data-i18n="allergies_label">Critical Drug Allergies</div>
+                <div class="box-value" id="emg-allergies" style="color:var(--warning-text); font-size:1.15rem;">Penicillin</div>
+              </div>
+
+              <div class="critical-box conditions">
+                <div class="box-label" data-i18n="critical_conditions_label">Critical Conditions</div>
+                <div class="box-value" id="emg-conditions" style="color:var(--success-text); font-size:1.15rem;">Asthma (Mild intermittent)</div>
+              </div>
+
+              <div class="critical-box meds">
+                <div class="box-label" data-i18n="critical_meds_label">Critical Current Medication</div>
+                <div class="box-value" id="emg-meds" style="color:var(--accent-600); font-size:1.15rem;">Salbutamol Inhaler (100 mcg)</div>
+              </div>
+            </div>
+
+            <!-- Emergency Contact Action -->
+            <div class="emergency-contact-box">
+              <div>
+                <div style="font-size:0.75rem; color:var(--slate-400); text-transform:uppercase; font-weight:700;">Designated Emergency Contact</div>
+                <div style="font-size:1.25rem; font-weight:800;" id="emg-contact-name">Priya Kumar (Spouse)</div>
+                <div style="font-size:0.95rem; color:#A5B4FC; font-family:monospace;" id="emg-contact-phone">+91 98765 00112</div>
+              </div>
+              <a id="emg-call-btn" href="tel:+919876500112" class="btn btn-emergency" style="font-size:1rem;">
+                📞 Call Contact Now
+              </a>
+            </div>
+
+            <!-- Audit Notice -->
+            <div class="emergency-audit-warning">
+              <span>🛡️</span>
+              <span data-i18n="emergency_audit_notice">Emergency access is logged to the tamper-evident security audit log. Complete psychiatric and non-emergency history remains sealed.</span>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:1rem; margin-top:0.5rem;">
+              <button class="btn btn-secondary" onclick="navigateTo('landing')">Back to Home</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 7: HEALTH CAMPS MODULE
+         ======================================================================= -->
+    <div id="view-camps" class="view-section">
+      <div class="page-container">
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size:1.75rem; font-weight:800; color:var(--slate-900);">Community Health Camps & Screening</h2>
+            <p style="color:var(--slate-600);">Mobile health screening drives conducted across Kerala migrant worker clusters.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modal-create-camp')">+ Register New Health Camp</button>
+        </div>
+
+        <div id="health-camps-list">
+          <!-- Dynamically populated -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         VIEW 8: ADMIN DASHBOARD & ANALYTICS
+         ======================================================================= -->
+    <div id="view-admin" class="view-section">
+      <div class="dashboard-shell">
+        
+        <aside class="dashboard-sidebar">
+          <div class="sidebar-user-badge">
+            <span style="font-size:1.8rem;">🏛️</span>
+            <div class="sidebar-user-details">
+              <h4>Kerala Health Mission</h4>
+              <p>State Admin Console</p>
+            </div>
+          </div>
+
+          <ul class="sidebar-nav-list">
+            <li>
+              <button class="sidebar-nav-btn active">
+                <span class="nav-icon">📊</span>
+                <span>Overview & Analytics</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="navigateTo('camps')">
+                <span class="nav-icon">🏕️</span>
+                <span>Health Camps</span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar-nav-btn" onclick="document.getElementById('admin-audit-section').scrollIntoView({behavior:'smooth'})">
+                <span class="nav-icon">🛡️</span>
+                <span>Security Audit Logs</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="sidebar-bottom-actions">
+            <button class="btn btn-secondary btn-sm" onclick="navigateTo('role-select')">
+              🚪 Logout
+            </button>
+          </div>
+        </aside>
+
+        <div class="dashboard-main-area">
+          
+          <!-- Key Metric Counters -->
+          <div class="stats-counter-grid">
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon teal">👷</div>
+              <div class="stat-counter-info">
+                <h3 id="stat-total-workers">1,248</h3>
+                <p>Total Workers</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon blue">🩺</div>
+              <div class="stat-counter-info">
+                <h3 id="stat-total-doctors">86</h3>
+                <p>Registered Doctors</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon amber">🏕️</div>
+              <div class="stat-counter-info">
+                <h3 id="stat-total-camps">42</h3>
+                <p>Health Camps</p>
+              </div>
+            </div>
+            <div class="stat-counter-card">
+              <div class="stat-counter-icon rose">📑</div>
+              <div class="stat-counter-info">
+                <h3 id="stat-total-records">5,832</h3>
+                <p>Medical Records</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+            
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+              <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:1rem; color:#0F172A;">Worker Registrations by Month</h4>
+              <div id="chart-registrations"></div>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+              <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:1rem; color:#0F172A;">District Deployment Coverage</h4>
+              <div id="chart-districts"></div>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+              <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:1rem; color:#0F172A;">Health Camp Screening Breakdown</h4>
+              <div id="chart-screening-breakdown"></div>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+              <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:1rem; color:#0F172A;">Worker Language Distribution</h4>
+              <div id="chart-languages"></div>
+            </div>
+
+          </div>
+
+          <!-- Registered Workers Table -->
+          <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:1rem; color:#0F172A;">Registered Migrant Workers</h4>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Worker Name</th>
+                    <th>Health ID</th>
+                    <th>Age/Gender</th>
+                    <th>Origin ➔ District</th>
+                    <th>Language</th>
+                    <th>Blood Group</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-workers-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Security Audit Logs Section -->
+          <div id="admin-audit-section" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:16px; padding:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+              <div>
+                <h4 style="font-size:1.15rem; font-weight:800; color:#0F172A;" data-i18n="nav_audit_logs">Security Audit Logs</h4>
+                <p style="font-size:0.8125rem; color:#64748B;">Tamper-evident record access trail for patient privacy compliance.</p>
+              </div>
+              <span class="badge badge-success">✓ Real-time Stream</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                    <th>Resource</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-audit-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =======================================================================
+       MODALS
+       ======================================================================= -->
+
+  <!-- Modal 1: Large QR Code View -->
+  <div id="modal-qr-view" class="modal-overlay">
+    <div class="modal-content" style="text-align:center; max-width:420px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800;">Digital Health Passport QR</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-qr-view')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-qr-large" style="display:flex; justify-content:center; margin:1rem 0;"></div>
+        <p style="font-size:0.8125rem; color:var(--slate-600);">Present this QR code at any hospital or health camp in Kerala for instant token verification.</p>
+        <button class="btn btn-primary" style="margin-top:1.5rem; width:100%;" onclick="closeModal('modal-qr-view')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Add Medical Record (Doctor) -->
+  <div id="modal-add-record" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800;">Add Clinical Encounter Record</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-add-record')">&times;</button>
+      </div>
+      <form class="modal-body" onsubmit="handleAddMedicalRecord(event)">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Condition / Chief Complaint <span class="required">*</span></label>
+          <input type="text" name="condition" class="form-control" placeholder="e.g. Acute Viral Fever, Laceration" required value="Monsoon Bronchitis & Cough">
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Clinical Diagnosis <span class="required">*</span></label>
+          <textarea name="diagnosis" class="form-control" rows="2" placeholder="Clinical assessment details" required>Mild lower airway congestion with productive cough. SpO2 98%.</textarea>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Prescribed Medicines <span class="required">*</span></label>
+          <input type="text" name="medicines" class="form-control" placeholder="e.g. Tab Paracetamol 650mg, Syrup Ambroxol" required value="Syrup Levosalbutamol + Ambroxol 5ml TDS x 5 days, Tab Cetirizine 10mg OD">
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Treatment / Procedures</label>
+          <input type="text" name="treatment" class="form-control" placeholder="e.g. Nebulization stat, Wound Dressing" value="Steam inhalation advised, avoid chilled water">
+        </div>
+        <div class="form-grid-2" style="margin-bottom:1rem;">
+          <div class="form-group">
+            <label>Follow-up (Days)</label>
+            <input type="number" name="follow_up_days" class="form-control" value="7">
+          </div>
+          <div class="form-group">
+            <label>Clinician Notes</label>
+            <input type="text" name="notes" class="form-control" placeholder="Advice for patient" value="Wear dust mask at construction site">
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-record')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Timeline ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Health Camp Screening Entry -->
+  <div id="modal-screening" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800;">Record Worker Screening</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-screening')">&times;</button>
+      </div>
+      <form class="modal-body" onsubmit="handleSubmitScreening(event)">
+        <input type="hidden" id="scr-camp-name" name="camp_name">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Worker Health ID <span class="required">*</span></label>
+          <input type="text" id="scr-worker-id" name="worker_id" class="form-control" required value="KL-MW-10234">
+        </div>
+        <div class="form-grid-2" style="margin-bottom:1rem;">
+          <div class="form-group">
+            <label>Blood Pressure <span class="required">*</span></label>
+            <input type="text" name="blood_pressure" class="form-control" placeholder="e.g. 120/80 mmHg" required value="124/80 mmHg">
+          </div>
+          <div class="form-group">
+            <label>Blood Sugar (Random/Fasting) <span class="required">*</span></label>
+            <input type="text" name="blood_sugar" class="form-control" placeholder="e.g. 98 mg/dL" required value="102 mg/dL (Random)">
+          </div>
+        </div>
+        <div class="form-grid-2" style="margin-bottom:1rem;">
+          <div class="form-group">
+            <label>Height (cm) <span class="required">*</span></label>
+            <input type="number" id="scr-height" name="height_cm" class="form-control" step="0.5" required value="172">
+          </div>
+          <div class="form-group">
+            <label>Weight (kg) <span class="required">*</span></label>
+            <input type="number" id="scr-weight" name="weight_kg" class="form-control" step="0.5" required value="68">
+          </div>
+        </div>
+        <div id="scr-bmi-display" style="font-size:0.8125rem; font-weight:700; color:var(--primary-700); margin-bottom:1rem;">
+          Calculated BMI: 23.0 kg/m² (Normal)
+        </div>
+        <div class="form-grid-2" style="margin-bottom:1rem;">
+          <div class="form-group">
+            <label>Vision Screening</label>
+            <select name="vision" class="form-control">
+              <option value="6/6 (Normal)" selected>6/6 (Normal)</option>
+              <option value="6/9 (Mild defect)">6/9 (Mild defect)</option>
+              <option value="6/12 (Refraction needed)">6/12 (Refraction needed)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Vaccination Verification</label>
+            <select name="vaccination_status" class="form-control">
+              <option value="Fully Vaccinated" selected>Fully Vaccinated</option>
+              <option value="Tetanus Booster Given">Tetanus Booster Given</option>
+              <option value="Pending Booster">Pending Booster</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Screening Notes</label>
+          <input type="text" name="notes" class="form-control" placeholder="Observations" value="Chest clear, vitals normal">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-screening')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Screening ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 5: Doctor Portal Login -->
+  <div id="modal-doctor-login" class="modal-overlay">
+    <div class="modal-content" style="max-width:480px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem; font-weight:800;" data-i18n="btn_doctor_login">Doctor Portal Login</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-doctor-login')">&times;</button>
+      </div>
+      <form class="modal-body" onsubmit="handleDoctorLoginSubmit(event)">
+        <p style="font-size:0.875rem; color:var(--slate-600); margin-bottom:1rem;" data-i18n="login_prompt_doctor">
+          Select or enter registered Doctor ID and credentials to access authorized worker medical history.
+        </p>
+
+        <!-- Demo Doctor Quick Select Chips -->
+        <label style="font-size:0.8125rem; font-weight:700; color:var(--slate-700); margin-bottom:6px; display:block;">
+          ⚡ Quick Select Registered Doctor (Demo):
+        </label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:1.25rem;">
+          <div id="quick-doc-doc101" class="doctor-quick-pill selected" onclick="quickSelectDoctor('DOC-101', 'Dr. Anil Kumar', 'Govt General Hospital, Kochi')">
+            <span style="font-size:1.2rem;">👨‍⚕️</span>
+            <div style="font-size:0.75rem;">
+              <strong style="display:block; color:var(--slate-900);">Dr. Anil Kumar</strong>
+              <span style="color:var(--slate-500);">Kochi (DOC-101)</span>
+            </div>
+          </div>
+          <div id="quick-doc-doc102" class="doctor-quick-pill" onclick="quickSelectDoctor('DOC-102', 'Dr. Meera Nair', 'District Hospital, Aluva')">
+            <span style="font-size:1.2rem;">👩‍⚕️</span>
+            <div style="font-size:0.75rem;">
+              <strong style="display:block; color:var(--slate-900);">Dr. Meera Nair</strong>
+              <span style="color:var(--slate-500);">Aluva (DOC-102)</span>
+            </div>
+          </div>
+          <div id="quick-doc-doc103" class="doctor-quick-pill" onclick="quickSelectDoctor('DOC-103', 'Dr. Rajesh Varma', 'PHC Kalamassery')">
+            <span style="font-size:1.2rem;">👨‍⚕️</span>
+            <div style="font-size:0.75rem;">
+              <strong style="display:block; color:var(--slate-900);">Dr. Rajesh Varma</strong>
+              <span style="color:var(--slate-500);">Kalamassery (DOC-103)</span>
+            </div>
+          </div>
+          <div id="quick-doc-doc104" class="doctor-quick-pill" onclick="quickSelectDoctor('DOC-104', 'Dr. Fatima Beevi', 'Taluk Hospital Perumbavoor')">
+            <span style="font-size:1.2rem;">👩‍⚕️</span>
+            <div style="font-size:0.75rem;">
+              <strong style="display:block; color:var(--slate-900);">Dr. Fatima Beevi</strong>
+              <span style="color:var(--slate-500);">Perumbavoor (DOC-104)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Doctor ID or Registered Email <span class="required">*</span></label>
+          <input type="text" id="login-doctor-id" name="doctor_id" class="form-control" placeholder="e.g. DOC-101 or dr.anilkumar@keralahealth.gov.in" required value="DOC-101">
+        </div>
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label>Password <span class="required">*</span></label>
+          <input type="password" id="login-doctor-pwd" name="password" class="form-control" placeholder="Password" required value="doctor123">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-doctor-login')" data-i18n="btn_cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-i18n="btn_doctor_login">Sign In to Doctor Portal ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 6: Doctor Profile & Ratings -->
+  <div id="modal-doctor-profile" class="modal-overlay">
+    <div class="modal-content" style="max-width:540px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem; font-weight:800;" data-i18n="doctor_profile_title">Doctor Profile & Credentials</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-doctor-profile')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1.25rem; padding-bottom:1.25rem; border-bottom:1px solid var(--slate-200);">
+          <div style="font-size:3rem; background:var(--primary-50); width:72px; height:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--primary-200);">
+            🩺
+          </div>
+          <div>
+            <h3 id="modal-doc-name" style="font-size:1.3rem; font-weight:800; color:var(--slate-900); margin:0;">Dr. Anil Kumar</h3>
+            <p id="modal-doc-spec" style="font-size:0.875rem; color:var(--primary-700); font-weight:600; margin:2px 0 6px;">General Medicine & Occupational Health</p>
+            <div id="modal-doc-rating-badge" class="rating-badge rating-badge-lg">
+              ⭐ <strong>4.9</strong> / 5.0 (18 patient ratings)
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1.25rem; background:var(--slate-50); padding:1rem; border-radius:8px; font-size:0.8125rem;">
+          <div>
+            <span style="color:var(--slate-500);">Affiliated Hospital:</span><br>
+            <strong id="modal-doc-hospital" style="color:var(--slate-900);">Govt General Hospital, Kochi</strong>
+          </div>
+          <div>
+            <span style="color:var(--slate-500);">Contact Phone:</span><br>
+            <strong id="modal-doc-phone" style="color:var(--slate-900);">+91 94471 10022</strong>
+          </div>
+          <div style="grid-column:1 / -1;">
+            <span style="color:var(--slate-500);">Official Email:</span><br>
+            <strong id="modal-doc-email" style="color:var(--slate-900);">dr.anilkumar@keralahealth.gov.in</strong>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--slate-900); margin-bottom:0.75rem;" data-i18n="total_reviews_label">
+            Recent Patient Feedback & Ratings
+          </h4>
+          <div id="modal-doc-reviews-list" style="max-height:220px; overflow-y:auto;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-doctor-profile')">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Edit Medical Record (Doctor) -->
+  <div id="modal-edit-record" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800;">Edit Clinical Encounter Report</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-edit-record')">&times;</button>
+      </div>
+      <form class="modal-body" onsubmit="handleUpdateMedicalRecord(event)">
+        <input type="hidden" id="edit-rec-id" name="record_id">
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Condition / Chief Complaint <span class="required">*</span></label>
+          <input type="text" id="edit-rec-condition" name="condition" class="form-control" required>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Clinical Assessment & Diagnosis <span class="required">*</span></label>
+          <textarea id="edit-rec-diagnosis" name="diagnosis" class="form-control" rows="2" required></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Prescribed Medicines <span class="required">*</span></label>
+          <input type="text" id="edit-rec-medicines" name="medicines" class="form-control" required>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Treatment & Procedures</label>
+          <input type="text" id="edit-rec-treatment" name="treatment" class="form-control">
+        </div>
+        <div class="form-grid-2" style="margin-bottom:1rem;">
+          <div class="form-group">
+            <label>Follow-up (Days)</label>
+            <input type="number" id="edit-rec-follow-up" name="follow_up_days" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Clinical Status</label>
+            <select id="edit-rec-status" name="status" class="form-control">
+              <option value="Completed">Completed</option>
+              <option value="In Follow-up">In Follow-up</option>
+              <option value="Referred">Referred to Specialist</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label>Clinician Notes / Patient Advice</label>
+          <input type="text" id="edit-rec-notes" name="notes" class="form-control">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-edit-record')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Report & Sign ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 8: Patient Doctor Rating & Review -->
+  <div id="modal-rate-doctor" class="modal-overlay">
+    <div class="modal-content" style="max-width:460px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800;" data-i18n="doctor_rating_title">Rate Your Doctor Consultation</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-rate-doctor')">&times;</button>
+      </div>
+      <form class="modal-body" onsubmit="handleSubmitRating(event)">
+        <input type="hidden" id="rating-rec-id" name="record_id">
+        <input type="hidden" id="rating-doc-id" name="doctor_id">
+        <input type="hidden" id="rating-star-input" name="rating" value="5">
+
+        <div style="background:var(--primary-50); border:1px solid var(--primary-200); border-radius:8px; padding:12px; margin-bottom:1.25rem;">
+          <div style="font-size:0.875rem; color:var(--primary-800); font-weight:700;">
+            Attending Clinician: <span id="rating-doc-name">Dr. Anil Kumar</span>
+          </div>
+          <div style="font-size:0.75rem; color:var(--primary-700);" id="rating-doc-hospital">
+            Government General Hospital, Kochi
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-bottom:1.25rem;">
+          <label style="font-size:0.875rem; font-weight:700; color:var(--slate-800); display:block; margin-bottom:8px;">
+            How was your consultation experience?
+          </label>
+          <div id="star-widget-container" class="star-rating-widget">
+            <span class="star-icon filled" data-val="1" onclick="setRatingStars(1)">★</span>
+            <span class="star-icon filled" data-val="2" onclick="setRatingStars(2)">★</span>
+            <span class="star-icon filled" data-val="3" onclick="setRatingStars(3)">★</span>
+            <span class="star-icon filled" data-val="4" onclick="setRatingStars(4)">★</span>
+            <span class="star-icon filled" data-val="5" onclick="setRatingStars(5)">★</span>
+          </div>
+          <div id="rating-star-label" style="font-size:0.8125rem; font-weight:700; color:#B45309; margin-top:4px;">
+            5/5 - Excellent
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label>Your Feedback / Comment (Optional)</label>
+          <textarea id="rating-review-text" name="review_text" class="form-control" rows="3" placeholder="Share your experience (e.g. language understanding, explanation of treatment, medicine instructions)"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-rate-doctor')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Rating ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       PRINTABLE HEALTH CARD (Rendered on window.print())
+       ======================================================================= -->
+  <div id="printable-health-card" style="display:none;">
+    <div style="width:400px; border:2px solid #0F766E; border-radius:16px; padding:20px; font-family:sans-serif; background:#FFFFFF; margin:20px auto;">
+      <div style="text-align:center; border-bottom:2px solid #0F766E; padding-bottom:10px; margin-bottom:12px;">
+        <h2 style="color:#0F766E; font-size:18px; margin:0;">GOVERNMENT OF KERALA</h2>
+        <h3 style="color:#0284C7; font-size:14px; margin:4px 0 0;">National Health Mission • Health Passport</h3>
+      </div>
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div id="print-card-qr"></div>
+        <div>
+          <div style="font-size:16px; font-weight:bold;" id="print-card-name">Rahul Kumar</div>
+          <div style="font-size:14px; font-family:monospace; color:#0F766E; font-weight:bold;" id="print-card-id">KL-MW-10234</div>
+          <div style="font-size:12px; margin-top:4px;">Blood Group: <strong id="print-card-blood" style="color:red;">B+</strong></div>
+          <div style="font-size:12px;">District: <span id="print-card-district">Ernakulam</span></div>
+          <div style="font-size:11px; margin-top:4px;">Emergency: <span id="print-card-emergency">Priya Kumar (+91 98765 00112)</span></div>
+        </div>
+      </div>
+      <div style="margin-top:12px; text-align:center; font-size:10px; color:#64748B; border-top:1px dashed #CBD5E1; padding-top:6px;">
+        Valid Across All Kerala Health Facilities • Portable Medical Record Token
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- =======================================================================
+       FOOTER
+       ======================================================================= -->
+  <footer class="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>HealthBridge Kerala</h3>
+        <p>A portable digital health passport ensuring continuity of healthcare, language accessibility, and patient consent for interstate migrant workers in Kerala.</p>
+        <div style="margin-top:1rem; font-size:0.75rem; color:var(--slate-500);">
+          Aligned with UN Sustainable Development Goals 3, 10, 9 & 16.
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Portals</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:navigateTo('worker', 'KL-MW-10234')">Worker Passport</a></li>
+          <li><a href="javascript:navigateTo('doctor')">Doctor Portal</a></li>
+          <li><a href="javascript:navigateTo('admin')">Admin Analytics</a></li>
+          <li><a href="javascript:navigateTo('emergency', 'KL-MW-10234')">Emergency Mode</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Initiatives</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:navigateTo('camps')">Health Screening Camps</a></li>
+          <li><a href="javascript:navigateTo('register')">Worker Registration</a></li>
+          <li><a href="javascript:navigateTo('landing')">SDG Impact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Compliance & Trust</h4>
+        <ul class="footer-links">
+          <li><span style="color:var(--slate-600);">✓ 24h Time-Bound Consent</span></li>
+          <li><span style="color:var(--slate-600);">✓ Tamper-Evident Audit Log</span></li>
+          <li><span style="color:var(--slate-600);">✓ Zero Medical Data in QR</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 HealthBridge Kerala • Hackathon / Educational Demonstration Prototype</div>
+      <div>Prototype for demonstration. Fictional demo patient data.</div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/qr.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/ai_summary.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/app.js"></script>
+
+</body>
+</html>

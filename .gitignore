@@ -1,0 +1,18 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.log
+logs/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.tmp
+data/*.db-wal
+data/*.db-shm
+data/uploads/
+data/*.db
+
+# SQLite files remain local/persistent because they contain account password hashes.
